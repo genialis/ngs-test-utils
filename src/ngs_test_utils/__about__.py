@@ -5,7 +5,7 @@
 __title__ = "ngs-test-utils"
 __summary__ = "Utilities for generation of synthetic NGS files"
 __url__ = "https://github.com/genialis/ngs-test-utils"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __author__ = "Genialis, Inc."
 __email__ = "dev-team@genialis.com"
 
