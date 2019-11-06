@@ -142,6 +142,10 @@ class BamTestCaseMixin:
                     segment = self.make_bam_segment(**segment)
                 outf.write(segment)
 
+        tmp_fname = fname + "tmp.bam"
+        pysam.sort("-o", tmp_fname, fname)
+        os.rename(tmp_fname, fname)
+
         pysam.index(fname)
 
         return os.path.abspath(fname)
