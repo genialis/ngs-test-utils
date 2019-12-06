@@ -4,6 +4,7 @@ import tempfile
 import unittest
 
 from .bam import BamTestCaseMixin
+from .bed import BedTestCaseMixin
 from .fasta import FastaTestCaseMixin
 from .fastq import FastqTestCaseMixin
 from .gtf import GtfTestCaseMixin
@@ -11,7 +12,13 @@ from .tsv import TsvTestCaseMixin
 
 
 class NgsTestCase(
-    BamTestCaseMixin, FastaTestCaseMixin, FastqTestCaseMixin, GtfTestCaseMixin, TsvTestCaseMixin, unittest.TestCase
+    BamTestCaseMixin,
+    BedTestCaseMixin,
+    FastaTestCaseMixin,
+    FastqTestCaseMixin,
+    GtfTestCaseMixin,
+    TsvTestCaseMixin,
+    unittest.TestCase,
 ):
     """Base class for NGS TestCases."""
 
