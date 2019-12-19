@@ -6,7 +6,6 @@ from ngs_test_utils import testcase
 
 
 class TestBamTestCase(testcase.NgsTestCase):
-
     def test_get_flag_value(self):
         flag = self.get_flag_value(
             is_paired=True,
@@ -34,7 +33,7 @@ class TestBamTestCase(testcase.NgsTestCase):
             ],
         )
         with pysam.AlignmentFile(bam, mode="rb", require_index=True) as bamfile:
-            self.assertEqual(bamfile.references, ('chr1', 'chr2'))
+            self.assertEqual(bamfile.references, ("chr1", "chr2"))
             self.assertEqual(bamfile.mapped, 2)
             self.assertEqual(bamfile.unmapped, 1)
             for read in bamfile.fetch():
