@@ -36,7 +36,7 @@ class GtfTestCaseMixin:
         data = [seqname, source, feature, start + 1, end, score, strand, frame, attrs]
         return pbt.create_interval_from_list(data)
 
-    def make_gtf(self, intervals):
+    def make_gtf(self, intervals, sort=False):
         """Create GTF file from a list of lists.
 
         Data should be a list of pbt.Interval objects or dicts.
@@ -46,6 +46,8 @@ class GtfTestCaseMixin:
         if isinstance(intervals[0], dict):
             intervals = [self.make_gtf_interval(**interval) for interval in intervals]
 
-        pbt.BedTool(interval for interval in intervals).saveas(fname)
+        gtf = pbt.BedTool(interval for interval in intervals).saveas(fname)
+        if sort:
+            gtf.sort().saveas(fname)
 
         return fname
