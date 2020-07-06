@@ -1,5 +1,6 @@
 """Test utilities for FASTQ files."""
 import numpy
+
 from ngs_test_utils.base.fastq import FastqEntry
 
 
