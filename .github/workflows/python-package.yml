@@ -57,4 +57,4 @@ jobs:
     - name: Install Tox
       run: pip install tox twine
     - name: Check package structure
-      run: tox -e packagingu
+      run: tox -e packaging

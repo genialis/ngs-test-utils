@@ -40,7 +40,7 @@ setuptools.setup(
             'check-manifest',
             'docutils',
             'flake8',
-            'isort',
+            'isort>=5.0.0',
             'pydocstyle',
             'pytest-cov',
             'setuptools_scm',
