@@ -44,6 +44,7 @@ setuptools.setup(
             'pydocstyle',
             'pytest-cov',
             'setuptools_scm',
+            'twine',
         ],
     },
     classifiers=[
