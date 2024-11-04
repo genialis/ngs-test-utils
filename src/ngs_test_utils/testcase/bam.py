@@ -5,6 +5,7 @@ Links for further read:
 [2] http://pysam.readthedocs.io/en/stable/usage.html#creating-bam-cram-sam-files-from-scratch
 
 """
+
 import os
 import random
 
@@ -72,8 +73,7 @@ class BamTestCaseMixin:
         tags=None,
         **kwargs,
     ):
-        """
-        Return pysam.AlignedSegment object.
+        """Return pysam.AlignedSegment object.
 
         Each pysam.AlignedSegment element has 11 mandatory tab-separated
         fields (qname, flag, rname, pos, mapq, cigar, rnext, pnext,
@@ -87,7 +87,7 @@ class BamTestCaseMixin:
         segment = pysam.AlignedSegment()
 
         if qname is None:
-            qname = "read-{}".format(random.randrange(1000, 9999))
+            qname = f"read-{random.randrange(1000, 9999)}"
         segment.query_name = qname
 
         segment.flag = flag or self.get_flag_value(**kwargs)
@@ -100,13 +100,17 @@ class BamTestCaseMixin:
         segment.next_reference_start = pnext
         segment.template_length = tlen
 
-        length = sum([length for (operation, length) in segment.cigartuples if operation in [0, 1, 4, 7, 8]])
+        length = sum(
+            [length for (operation, length) in segment.cigartuples if operation in [0, 1, 4, 7, 8]]
+        )
         if seq is None:
             seq = FastaTestCaseMixin.make_fasta_sequence(size=length, include_n=False)
         segment.query_sequence = seq
 
         if qual is None:
-            qual = pysam.qualitystring_to_array(FastqTestCaseMixin.make_quality_scores(size=length))
+            qual = pysam.qualitystring_to_array(
+                FastqTestCaseMixin.make_quality_scores(size=length)
+            )
         segment.query_qualities = qual
 
         if tags is not None:
@@ -115,8 +119,7 @@ class BamTestCaseMixin:
         return segment
 
     def make_bam(self, chroms, segments):
-        """
-        Make a synthetic BAM file.
+        """Make a synthetic BAM file.
 
         Each BAM file consists of header and alignment entries.
 

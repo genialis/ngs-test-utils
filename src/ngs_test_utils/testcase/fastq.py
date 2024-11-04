@@ -1,4 +1,5 @@
 """Test utilities for FASTQ files."""
+
 import numpy
 
 from ngs_test_utils.base.fastq import FastqEntry
@@ -19,7 +20,7 @@ class FastqTestCaseMixin:
         """Make sequence ID."""
         if rnd_seed:
             numpy.random.seed(rnd_seed)
-        return "random_sequence_{}".format(numpy.random.randint(0, 10 ** 4))
+        return f"random_sequence_{numpy.random.randint(0, 10**4)}"
 
     def make_fastq_entry(self, seq, seq_id=None, plus="+", quality=None, rnd_seed=None):
         """Make FASTQ entry."""
@@ -35,7 +36,7 @@ class FastqTestCaseMixin:
         """Make FASTQ file from entries."""
         filename = self.get_filename(extension="fastq")
 
-        with open(filename, "wt") as ofile:
+        with open(filename, "w") as ofile:
             for entry in entries:
                 entry.write(ofile)
 

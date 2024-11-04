@@ -1,4 +1,5 @@
 """Test utilities for FASTA files."""
+
 import os
 
 import numpy
@@ -16,7 +17,9 @@ class FastaTestCaseMixin:
         bases = BASES + ["N"] if include_n else BASES
         return "".join(numpy.random.choice(bases, size))
 
-    def make_fasta(self, sequences=None, headers=None, num_sequences=10, seq_len=80, rnd_seed=None):
+    def make_fasta(
+        self, sequences=None, headers=None, num_sequences=10, seq_len=80, rnd_seed=None
+    ):
         """Make FASTA file."""
         if sequences and headers is None:
             num_sequences = len(sequences)
@@ -25,14 +28,14 @@ class FastaTestCaseMixin:
 
         numpy.random.seed(rnd_seed)
         if sequences is None:
-            random_seeds = numpy.random.randint(10 ** 5, size=num_sequences)
+            random_seeds = numpy.random.randint(10**5, size=num_sequences)
             sequences = [self.make_fasta_sequence(seq_len, rnd_seed=rnd) for rnd in random_seeds]
         if headers is None:
-            headers = ["{}".format(i + 1) for i in range(num_sequences)]
+            headers = [f"{i + 1}" for i in range(num_sequences)]
 
         out_file = self.get_filename(extension="fasta")
-        with open(out_file, "wt") as ofile:
-            for header, seq in zip(headers, sequences):
+        with open(out_file, "w") as ofile:
+            for header, seq in zip(headers, sequences, strict=False):
                 ofile.write(">" + header + "\n")
                 ofile.write(seq + "\n")
 

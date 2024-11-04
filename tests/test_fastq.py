@@ -23,4 +23,6 @@ class TestFastqTestCase(testcase.NgsTestCase):
     def test_make_fastq_file(self):
         entry = self.make_fastq_entry(seq="ACTG", rnd_seed=2)
         filename = self.make_fastq([entry])
-        self.assertEqual(self.tsv_to_list(filename), [["random_sequence_7336"], ["ACTG"], ["+"], ["I0)7"]])
+        self.assertEqual(
+            self.tsv_to_list(filename), [["random_sequence_7336"], ["ACTG"], ["+"], ["I0)7"]]
+        )

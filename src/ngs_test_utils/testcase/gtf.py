@@ -1,4 +1,5 @@
 """Test utilities for GTF files."""
+
 import pybedtools as pbt
 
 
@@ -9,7 +10,7 @@ class GtfTestCaseMixin:
         """Create 9th column in GTF file - attributes."""
         attrs = ""
         for name, value in kwargs.items():
-            attrs += '{} "{}"; '.format(name, value)
+            attrs += f'{name} "{value}"; '
 
         attrs = attrs.strip()
         if attrs:

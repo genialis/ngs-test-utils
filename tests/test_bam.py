@@ -1,5 +1,3 @@
-import unittest
-
 import pysam
 
 from ngs_test_utils import testcase
@@ -36,5 +34,5 @@ class TestBamTestCase(testcase.NgsTestCase):
             self.assertEqual(bamfile.references, ("chr1", "chr2"))
             self.assertEqual(bamfile.mapped, 2)
             self.assertEqual(bamfile.unmapped, 1)
-            for read in bamfile.fetch():
+            for _ in bamfile.fetch():
                 pass
